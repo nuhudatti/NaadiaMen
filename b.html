@@ -1,0 +1,551 @@
+<Style>
+        :root {
+            --navy: #0a0e1f;
+            --gold: #e5b80b;
+            --light-text: #ffffff;
+            --dark-bg: #0f1425;
+            --cosmic-purple: #4a1e6b;
+            --neural-blue: #1a5fb4;
+            --eternal-glow: rgba(229, 184, 11, 0.3);
+        }
+
+      
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 184, 11, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: 0 0 25px rgba(229, 184, 11, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+
+        /* Cosmic Modal */
+        .cosmic-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 31, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(15px);
+            padding: 1rem;
+        }
+
+        .cosmic-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cosmic-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            background: 
+                linear-gradient(145deg, rgba(26, 31, 54, 0.95), rgba(20, 25, 46, 0.98)),
+                radial-gradient(circle at top right, rgba(229, 184, 11, 0.1), transparent 40%);
+            border: 1px solid rgba(229, 184, 11, 0.25);
+            border-radius: 24px;
+            overflow: hidden;
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(30px);
+            box-shadow: 
+                0 0 80px rgba(229, 184, 11, 0.2),
+                0 0 0 1px rgba(229, 184, 11, 0.1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .cosmic-modal.active .cosmic-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .cosmic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(229, 184, 11, 0.1), transparent);
+            border-bottom: 1px solid rgba(229, 184, 11, 0.2);
+        }
+
+        .cosmic-header h2 {
+            color: var(--light-text);
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--light-text), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cosmic-close {
+            background: rgba(229, 184, 11, 0.15);
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(229, 184, 11, 0.2);
+        }
+
+        .cosmic-close:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(229, 184, 11, 0.5);
+        }
+
+        .cosmic-body {
+            padding: 2rem 2.5rem 2.5rem;
+        }
+
+        /* Form Styles */
+        .cosmic-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: var(--light-text);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--light-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(229, 184, 11, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            grid-column: 1 / -1;
+            background: 
+                linear-gradient(135deg, var(--gold), #d4a30c),
+                radial-gradient(circle at top left, #ffd700, var(--gold));
+            color: var(--navy);
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 5px 15px rgba(229, 184, 11, 0.4),
+                0 0 0 1px rgba(229, 184, 11, 0.1);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(229, 184, 11, 0.5),
+                0 0 0 1px rgba(229, 184, 11, 0.2);
+        }
+
+        .form-submit:hover::before {
+            left: 100%;
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Form Validation */
+        .form-input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #ff6b6b;
+        }
+
+        .form-input:valid:not(:focus):not(:placeholder-shown) {
+            border-color: #51cf66;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            animation: successPulse 1s ease;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-message h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--light-text);
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* Cosmic Elements */
+        .cosmic-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .cosmic-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold), transparent);
+            opacity: 0.1;
+            animation: floatElement 20s infinite linear;
+        }
+
+        @keyframes floatElement {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            33% { transform: translateY(-30px) translateX(20px) rotate(120deg); }
+            66% { transform: translateY(20px) translateX(-20px) rotate(240deg); }
+            100% { transform: translateY(0) translateX(0) rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .luxury-text {
+                font-size: 3.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .cosmic-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .cosmic-header, .cosmic-body {
+                padding: 1.5rem;
+            }
+            
+            .cosmic-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .luxury-text {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-secondary {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <!-- Cosmic Modal -->
+    <div class="cosmic-modal" id="fittingModal">
+        <div class="cosmic-container">
+            <div class="cosmic-elements" id="cosmicElements"></div>
+            
+            <div class="cosmic-header">
+                <h2>Book Your Bespoke Fitting</h2>
+                <button class="cosmic-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cosmic-body">
+                <form class="cosmic-form" id="fittingForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Enter your first name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Enter your last name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+234 800 000 0000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" name="preferredDate" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="preferredTime">Preferred Time</label>
+                        <select id="preferredTime" name="preferredTime" class="form-select" required>
+                            <option value="">Select a time</option>
+                            <option style="color: black;" value="09:00">09:00 AM</option>
+                            <option style="color: black;" value="10:00">10:00 AM</option>
+                            <option style="color: black;" value="11:00">11:00 AM</option>
+                            <option style="color: black;" value="12:00">12:00 PM</option>
+                            <option style="color: black;" value="13:00">01:00 PM</option>
+                            <option style="color: black;" value="14:00">02:00 PM</option>
+                            <option style="color: black;" value="15:00">03:00 PM</option>
+                            <option style="color: black;" value="16:00">04:00 PM</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label" for="garmentType">Garment Type</label>
+                        <select id="garmentType" name="garmentType" class="form-select"  required>
+                            <option value="">Select garment type</option>
+                            <option style="color: black;" value="executive-kaftan">Executive Kaftan</option>
+                            <option style="color: black;" value="casual-kaftan">Casual Kaftan</option>
+                            <option style="color: black;" value="luxury-cap">Luxury Cap</option>
+                            <option style="color: black;" value="jallabiya">Jallabiya</option>
+                            <option style="color: black;" value="full-outfit">Full Outfit</option>
+                            <option style="color: black;" value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label" for="specialRequests">Special Requests</label>
+                        <textarea id="specialRequests" name="specialRequests" class="form-textarea" placeholder="Any specific requirements, measurements, or special requests..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit" id="submitBtn">
+                        <i class="fas fa-calendar-check"></i> Confirm Booking
+                    </button>
+                </form>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Booking Confirmed!</h3>
+                    <p>Thank you for booking your fitting. We'll contact you shortly to confirm your appointment details.</p>
+                    <button class="btn-secondary" id="closeSuccess">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const bookFittingBtn = document.getElementById('bookFittingBtn');
+        const fittingModal = document.getElementById('fittingModal');
+        const modalClose = document.getElementById('modalClose');
+        const fittingForm = document.getElementById('fittingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const closeSuccess = document.getElementById('closeSuccess');
+        const cosmicElements = document.getElementById('cosmicElements');
+
+        // Create cosmic particles
+        function createCosmicParticles() {
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'cosmic-particle';
+                
+                const size = Math.random() * 80 + 20;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                particle.style.animationDuration = `${Math.random() * 20 + 20}s`;
+                
+                cosmicElements.appendChild(particle);
+            }
+        }
+
+        // Open modal
+        bookFittingBtn.addEventListener('click', () => {
+            fittingModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            fittingModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        fittingModal.addEventListener('click', (e) => {
+            if (e.target === fittingModal) {
+                fittingModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close success message
+        closeSuccess.addEventListener('click', () => {
+            successMessage.classList.remove('active');
+            fittingModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            fittingForm.reset();
+        });
+
+        // Form submission
+        fittingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            try {
+                // In a real implementation, you would send the form data to Formspree
+                // For demo purposes, we'll simulate a successful submission
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Show success message
+                fittingForm.style.display = 'none';
+                successMessage.classList.add('active');
+                
+            } catch (error) {
+                alert('There was an error submitting your booking. Please try again.');
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
+            }
+        });
+
+        // Initialize cosmic particles
+        document.addEventListener('DOMContentLoaded', () => {
+            createCosmicParticles();
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('preferredDate').min = today;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && fittingModal.classList.contains('active')) {
+                fittingModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

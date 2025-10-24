@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond Future - Eternal Elegance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --gold: #E5B80B;
+            --navy: #1a1f36;
+            --light-navy: #2a2f46;
+            --cream: #f5f5f0;
+            --dark-text: #333333;
+            --light-text: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--gold), #d4a30c);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .luxury-text {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(26, 31, 54, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            background-color: rgba(26, 31, 54, 0.98);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--light-text);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-right: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--gold);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--navy);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: var(--navy);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(229, 184, 11, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 184, 11, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #vanta-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--light-text);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--navy);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(229, 184, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 184, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--light-text);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 6rem 5%;
+            background-color: var(--cream);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--dark-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .collection-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+
+        .collection-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .collection-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .collection-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .collection-card:hover .collection-image::before {
+            opacity: 1;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.05);
+        }
+
+        .collection-content {
+            padding: 1.5rem;
+        }
+
+        .collection-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .collection-content p {
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .collection-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .add-to-cart {
+            background-color: var(--navy);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            transform: scale(1.05);
+        }
+
+        /* Featured Products */
+        .featured-products {
+            padding: 6rem 5%;
+            background-color: var(--navy);
+            color: var(--light-text);
+            position: relative;
+        }
+
+        .featured-products .section-title h2 {
+            color: var(--light-text);
+        }
+
+        .featured-products .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--light-navy);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px) rotateX(10deg);
+            perspective: 1000px;
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateX(0deg) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Video Closing Section */
+        .video-closing {
+            padding: 6rem 5%;
+            background: var(--gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-closing h2 {
+            font-size: 3rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-overlay:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Shopping Cart */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-text);
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+        }
+
+        .cart-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        .quantity {
+            margin: 0 0.8rem;
+            font-weight: 600;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-left: auto;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            color: #ff5252;
+            transform: scale(1.2);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient);
+            color: var(--navy);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 184, 11, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: var(--light-text);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .video-closing h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* Particle Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--gold);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--gold) }
+        }
+
+        /* Infinite Scroll Indicator */
+        .infinite-scroll {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            transition: var(--transition);
+            animation: infiniteRotate 3s linear infinite;
+        }
+
+        .infinite-scroll.show {
+            opacity: 1;
+        }
+
+        @keyframes infiniteRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo"><i class="fas fa-infinity"></i>Beyond<span>Future</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-icon" id="cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <button class="cta-button">Eternal Access</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div id="vanta-background"></div>
+        <div class="hero-content">
+            <h1 class="luxury-text">Eternal Elegance</h1>
+            <p class="typewriter">A platform transcending time, where innovation meets immortality in bespoke experiences.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('collections')">Discover Eternity</button>
+                <button class="btn-secondary">Initiate Journey</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collections" id="collections">
+        <div class="section-title">
+            <h2>Timeless Collections</h2>
+            <p>Crafted beyond boundaries, our collections defy the ordinary, blending futuristic design with eternal craftsmanship.</p>
+        </div>
+        <div class="collection-grid">
+            <!-- Collection items will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products" id="featured">
+        <div class="section-title">
+            <h2>Featured Innovations</h2>
+            <p>Handpicked artifacts of the future, engineered for the discerning visionary who demands the extraordinary.</p>
+        </div>
+        <div class="product-grid">
+            <!-- Product items will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Video Closing Section -->
+    <section class="video-closing" id="about">
+        <h2>The Eternal Horizon</h2>
+        <div class="video-wrapper">
+            <video id="closing-video" loop muted poster="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <source src="./Assits/1.mp4" type="video/mp4">
+                Your browser does not support the video tag. <!-- Placeholder video; replace with actual asset -->
+            </video>
+            <div class="video-overlay" onclick="toggleVideo()">
+                <i class="fas fa-play" style="font-size: 3rem;"></i>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; color: var(--navy); font-size: 1.2rem;">Witness the dawn of beyond eternity.</p>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Eternal Cart</h3>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">₦0.00</span>
+        </div>
+        <button class="checkout-btn">Transcend to Checkout</button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Beyond Future</h4>
+                <p>A realm where technology and timelessness converge, designed to endure beyond eternity for the elite visionary.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Realms</h4>
+                <ul>
+                    <li><a href="#">Eternal Wear</a></li>
+                    <li><a href="#">Futuristic Lifestyle</a></li>
+                    <li><a href="#">Infinite Accessories</a></li>
+                    <li><a href="#">Beyond Editions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Experiences</h4>
+                <ul>
+                    <li><a href="#">Bespoke Realms</a></li>
+                    <li><a href="#">Visionary Styling</a></li>
+                    <li><a href="#">Eternal Alterations</a></li>
+                    <li><a href="#">Cosmic Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Portal</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Across Dimensions</li>
+                    <li><i class="fas fa-phone"></i> +∞ (Eternal Line)</li>
+                    <li><i class="fas fa-envelope"></i> portal@beyondfuture.com</li>
+                    <li><i class="fab fa-whatsapp"></i> Quantum Consultation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Beyond Eternity. Unbreakable. Infinite. 2025 & Beyond.</p>
+        </div>
+    </footer>
+
+    <!-- Particle Background Container -->
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Infinite Scroll Indicator -->
+    <div class="infinite-scroll" id="infinite-scroll" title="Scroll to Eternity">
+        <i class="fas fa-infinity"></i>
+    </div>
+
+    <!-- Add this CSS to your existing style section -->
+<style>
+    /* Advanced Video Showroom Styles (Scoped) - Beyond Eternity Edition */
+    .video-showroom-advanced {
+        padding: 8rem 5% 6rem;
+        background: linear-gradient(135deg, var(--navy) 0%, #0a0e1f 50%, rgba(229, 184, 11, 0.02) 100%);
+        color: var(--light-text);
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+    }
+
+    .video-showroom-advanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(229, 184, 11, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(229, 184, 11, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(229, 184, 11, 0.08) 0%, transparent 50%);
+        animation: cosmicDrift 30s ease-in-out infinite alternate;
+        z-index: -1;
+    }
+
+    @keyframes cosmicDrift {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        100% { transform: translate(-20px, -20px) rotate(1deg) scale(1.05); }
+    }
+
+    .video-showroom-advanced .section-title h2 {
+        color: var(--light-text);
+        font-size: 3.5rem;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, var(--light-text), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .video-showroom-advanced .section-title p {
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin: 0 auto 5rem;
+        font-style: italic;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        font-size: 1.2rem;
+    }
+
+    .eternal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .eternal-video-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(229, 184, 11, 0.2);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+        opacity: 0;
+        transform: translateY(50px) rotateX(10deg);
+        backdrop-filter: blur(10px);
+    }
+
+    .eternal-video-card.visible {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+
+    .eternal-video-card:hover {
+        transform: translateY(-15px) rotateX(0) scale(1.05);
+        border-color: var(--gold);
+        box-shadow: 0 25px 50px rgba(229, 184, 11, 0.15), 0 0 30px rgba(229, 184, 11, 0.1);
+    }
+
+    .eternal-thumbnail {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .eternal-thumbnail video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        filter: brightness(0.8) contrast(1.1);
+    }
+
+    .eternal-video-card:hover .eternal-thumbnail video {
+        transform: scale(1.1);
+        filter: brightness(1) contrast(1.2);
+    }
+
+    .neural-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--gold), #d4a30c);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        font-size: 1.4rem;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 0 0 20px rgba(229, 184, 11, 0.5);
+        backdrop-filter: blur(15px);
+    }
+
+    .eternal-video-card:hover .neural-play {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .eternal-duration {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: var(--light-text);
+        padding: 0.2rem 0.5rem;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .eternal-content {
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .eternal-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--light-text);
+        font-family: 'Playfair Display', serif;
+        transition: color 0.3s ease;
+    }
+
+    .eternal-video-card:hover .eternal-content h3 {
+        color: var(--gold);
+    }
+
+    .eternal-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    .eternal-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.8rem;
+    }
+
+    .eternal-views, .eternal-date {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    /* Infinity Modal - Neural Network Enhanced */
+    .infinity-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 14, 31, 0.98);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        backdrop-filter: blur(20px);
+    }
+
+    .infinity-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .neural-container {
+        position: relative;
+        width: 95%;
+        max-width: 1200px;
+        background: rgba(26, 31, 54, 0.9);
+        border: 1px solid rgba(229, 184, 11, 0.3);
+        border-radius: 25px;
+        overflow: hidden;
+        transform: scale(0.8) rotateX(15deg);
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        backdrop-filter: blur(30px);
+        box-shadow: 0 0 100px rgba(229, 184, 11, 0.2);
+    }
+
+    .infinity-modal.active .neural-container {
+        transform: scale(1) rotateX(0);
+    }
+
+    .neural-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, rgba(229, 184, 11, 0.1), transparent);
+        border-bottom: 1px solid rgba(229, 184, 11, 0.2);
+    }
+
+    .neural-header h3 {
+        color: var(--light-text);
+        font-size: 1.8rem;
+        margin: 0;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .neural-close {
+        background: rgba(229, 184, 11, 0.2);
+        border: none;
+        color: var(--light-text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .neural-close:hover {
+        background: var(--gold);
+        color: var(--navy);
+        transform: rotate(180deg) scale(1.1);
+    }
+
+    .neural-player {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .neural-player video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        outline: none;
+    }
+
+    .neural-footer {
+        padding: 2rem;
+        background: linear-gradient(135deg, transparent, rgba(229, 184, 11, 0.05));
+        border-top: 1px solid rgba(229, 184, 11, 0.1);
+    }
+
+    .neural-footer p {
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+    /* Neural Particles */
+    .neural-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .neural-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: neuralFloat 15s infinite linear;
+    }
+
+    @keyframes neuralFloat {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0.6; }
+        50% { transform: translateY(-30px) translateX(20px); opacity: 1; }
+    }
+
+    /* Upload Portal - Quantum Inspired */
+    .quantum-upload {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px dashed rgba(229, 184, 11, 0.3);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-top: 4rem;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(10px);
+    }
+
+    .quantum-upload:hover {
+        border-color: var(--gold);
+        box-shadow: 0 0 30px rgba(229, 184, 11, 0.2);
+        transform: scale(1.02);
+    }
+
+    .quantum-icon {
+        font-size: 4rem;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .quantum-text h4 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+        color: var(--light-text);
+    }
+
+    .quantum-text p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+    }
+
+    .quantum-btn {
+        background: linear-gradient(135deg, var(--gold), #d4a30c);
+        color: var(--navy);
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(229, 184, 11, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .quantum-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(229, 184, 11, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .eternal-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .neural-player {
+            height: 50vh;
+        }
+        
+        .video-showroom-advanced {
+            padding: 6rem 5% 4rem;
+        }
+        
+        .neural-header h3 {
+            font-size: 1.4rem;
+        }
+    }
+</style>
+
+<!-- Add this HTML before the </footer> tag -->
+<section class="video-showroom-advanced">
+    <div class="section-title">
+        <h2>Beyond Eternity: Visionary Showroom</h2>
+        <p>Enter the neural nexus where craftsmanship transcends time—auto-playing visions of bespoke mastery, engineered with quantum precision and cosmic elegance. Witness the future of tailoring unfold in eternal loops.</p>
+    </div>
+    
+    <div class="eternal-grid" id="eternal-grid">
+        <!-- Eternal video cards generated dynamically -->
+    </div>
+    
+    <div class="quantum-upload">
+        <div class="quantum-icon">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <div class="quantum-text">
+            <h4>Launch Your Vision</h4>
+            <p>Upload and eternalize your bespoke journey into our cosmic archive</p>
+        </div>
+        <button class="quantum-btn" id="quantum-upload-btn">
+            <i class="fas fa-upload"></i> Propel Video
+        </button>
+        <input type="file" id="eternal-upload" accept="video/*" style="display: none;">
+    </div>
+</section>
+
+<!-- Infinity Neural Modal -->
+<div class="infinity-modal" id="infinity-modal">
+    <div class="neural-container">
+        <div class="neural-header">
+            <h3 id="neural-title">Eternal Vision</h3>
+            <button class="neural-close" id="neural-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="neural-player">
+            <video id="neural-player" controls preload="metadata"></video>
+            <div class="neural-particles" id="neural-particles"></div>
+        </div>
+        <div class="neural-footer">
+            <p id="neural-desc">Immerse in the infinite—where every frame echoes the symphony of creation.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Add this JavaScript to your existing script section -->
+<script>
+    // Eternal Video Cosmos - Beyond Imagination Data
+    const eternalVisions = [
+        {
+            id: 1,
+            title: "Quantum Kaftan Genesis",
+            desc: "Witness the birth of elegance from atomic threads—bespoke mastery in molecular motion.",
+            thumb: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-tailor-working-on-a-suit-39886-large.mp4",
+            duration: "4:32",
+            views: "∞ Views",
+            date: "Eternal"
+        },
+        {
+            id: 2,
+            title: "Neural Cap Odyssey",
+            desc: "Journey through synaptic fabrics where design thinks for itself—AI-forged sophistication.",
+            thumb: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-fashion-model-in-elegant-evening-dress-39889-large.mp4",
+            duration: "3:15",
+            views: "∞ Views",
+            date: "Timeless"
+        },
+        {
+            id: 3,
+            title: "Cosmic Suit Singularity",
+            desc: "Merge with the void—suits that evolve, crafted from stardust and singularity silk.",
+            thumb: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-fabric-textile-background-39885-large.mp4",
+            duration: "7:21",
+            views: "∞ Views",
+            date: "Beyond"
+        },
+        {
+            id: 4,
+            title: "Holographic Ensemble",
+            desc: "Project your essence—holograms of heritage woven into wearable wormholes.",
+            thumb: "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-woman-holding-a-perfume-bottle-39888-large.mp4",
+            duration: "5:44",
+            views: "∞ Views",
+            date: "Infinite"
+        },
+        {
+            id: 5,
+            title: "Stellar Overcoat Nebula",
+            desc: "Wrap in nebulae—overcoats that capture cosmic winds and stellar symmetries.",
+            thumb: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-businessman-in-a-meeting-39887-large.mp4",
+            duration: "6:18",
+            views: "∞ Views",
+            date: "Galactic"
+        },
+        {
+            id: 6,
+            title: "Singularity Photoshoot",
+            desc: "Black hole backdrops—where light bends to the will of woven wonders.",
+            thumb: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            src: "https://assets.mixkit.co/videos/preview/mixkit-photographer-taking-a-picture-39890-large.mp4",
+            duration: "8:05",
+            views: "∞ Views",
+            date: "Event Horizon"
+        }
+    ];
+
+    // Neural Elements
+    const infinityModal = document.getElementById('infinity-modal');
+    const neuralPlayer = document.getElementById('neural-player');
+    const neuralTitle = document.getElementById('neural-title');
+    const neuralDesc = document.getElementById('neural-desc');
+    const neuralClose = document.getElementById('neural-close');
+    const quantumBtn = document.getElementById('quantum-upload-btn');
+    const eternalUpload = document.getElementById('eternal-upload');
+
+    // Generate Eternal Grid
+    const eternalGrid = document.getElementById('eternal-grid');
+    eternalVisions.forEach((vision, idx) => {
+        const card = document.createElement('div');
+        card.className = 'eternal-video-card';
+        card.innerHTML = `
+            <div class="eternal-thumbnail" data-vision-id="${vision.id}">
+                <video autoplay muted loop preload="metadata">
+                    <source src="${vision.src}" type="video/mp4">
+                </video>
+                <div class="neural-play">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <div class="eternal-duration">${vision.duration}</div>
+            </div>
+            <div class="eternal-content">
+                <h3>${vision.title}</h3>
+                <p>${vision.desc}</p>
+                <div class="eternal-meta">
+                    <div class="eternal-views">
+                        <i class="fas fa-eye"></i> <span>${vision.views}</span>
+                    </div>
+                    <div class="eternal-date">
+                        <i class="fas fa-infinity"></i> <span>${vision.date}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        eternalGrid.appendChild(card);
+    });
+
+    // Portal to Infinity - Open Modal
+    document.querySelectorAll('.eternal-thumbnail').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            const vidId = parseInt(thumb.dataset.visionId);
+            const vision = eternalVisions.find(v => v.id === vidId);
+            if (vision) {
+                neuralTitle.textContent = vision.title;
+                neuralDesc.textContent = vision.desc;
+                neuralPlayer.src = vision.src;
+                infinityModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => neuralPlayer.play(), 300); // Auto-play with sound
+                createNeuralParticles(); // Spawn particles
+            }
+        });
+    });
+
+    // Close Neural Portal
+    neuralClose.addEventListener('click', () => {
+        infinityModal.classList.remove('active');
+        neuralPlayer.pause();
+        document.body.style.overflow = 'auto';
+        clearNeuralParticles();
+    });
+
+    infinityModal.addEventListener('click', e => {
+        if (e.target === infinityModal) {
+            infinityModal.classList.remove('active');
+            neuralPlayer.pause();
+            document.body.style.overflow = 'auto';
+            clearNeuralParticles();
+        }
+    });
+
+    // Quantum Upload Portal
+    quantumBtn.addEventListener('click', () => eternalUpload.click());
+    eternalUpload.addEventListener('change', e => {
+        if (e.target.files[0]) {
+            const file = e.target.files[0];
+            alert(`Portal activated: "${file.name}" launched into eternity. Neural upload complete—redeploy in cosmic archive.`);
+            e.target.value = '';
+        }
+    });
+
+    // Eternal Scroll Revelation
+    function revealEternal() {
+        const cards = document.querySelectorAll('.eternal-video-card');
+        cards.forEach((card, i) => {
+            const top = card.getBoundingClientRect().top;
+            if (top < window.innerHeight) {
+                setTimeout(() => card.classList.add('visible'), i * 150);
+            }
+        });
+    }
+    window.addEventListener('scroll', revealEternal);
+    window.addEventListener('load', revealEternal);
+
+    // Neural Particle Genesis
+    function createNeuralParticles() {
+        const container = document.getElementById('neural-particles');
+        container.innerHTML = '';
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'neural-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.width = Math.random() * 3 + 1 + 'px';
+            particle.style.height = particle.style.width;
+            container.appendChild(particle);
+        }
+    }
+
+    function clearNeuralParticles() {
+        document.getElementById('neural-particles').innerHTML = '';
+    }
+
+    // Keyboard Neural Interface
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && infinityModal.classList.contains('active')) {
+            infinityModal.classList.remove('active');
+            neuralPlayer.pause();
+            document.body.style.overflow = 'auto';
+            clearNeuralParticles();
+        }
+        if (e.key === ' ' && infinityModal.classList.contains('active')) {
+            e.preventDefault();
+            neuralPlayer.paused ? neuralPlayer.play() : neuralPlayer.pause();
+        }
+    });
+
+    // Auto-initialize eternal visions on load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ensure videos auto-play muted on load
+        document.querySelectorAll('.eternal-thumbnail video').forEach(vid => {
+            vid.muted = true;
+            vid.loop = true;
+            vid.play().catch(() => {}); // Graceful fallback
+        });
+    });
+</script>
+
+    <script>
+        // GSAP Registration
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: true,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xe5b80b,
+            backgroundColor: 0x1a1f36,
+            points: 16.00,
+            maxDistance: 25.00,
+            spacing: 15.00
+        });
+
+        // Hero Animations with GSAP
+        gsap.from(".hero h1", { duration: 1.5, y: 50, opacity: 0, ease: "power3.out", delay: 0.5 });
+        gsap.from(".hero p", { duration: 1.5, y: 50, opacity: 0, ease: "power3.out", delay: 0.8 });
+        gsap.from(".hero-buttons", { duration: 1.5, y: 50, opacity: 0, ease: "power3.out", delay: 1.1 });
+
+        // Scroll-triggered animations for cards
+        gsap.utils.toArray(".collection-card, .product-card").forEach(card => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50, scale: 0.95, rotationX: 15 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    rotationX: 0,
+                    duration: 1, 
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Video section animations
+        gsap.from(".video-closing h2", { 
+            duration: 1, 
+            y: 50, 
+            opacity: 0, 
+            scrollTrigger: { trigger: ".video-closing", start: "top 80%" } 
+        });
+        gsap.from(".video-wrapper", { 
+            duration: 1.5, 
+            scale: 0.9, 
+            opacity: 0, 
+            delay: 0.5,
+            scrollTrigger: { trigger: ".video-wrapper", start: "top 80%" } 
+        });
+
+        // Parallax for featured section (simulated)
+        ScrollTrigger.create({
+            trigger: ".featured-products",
+            start: "top bottom",
+            onUpdate: self => {
+                gsap.to(".featured-products", { yPercent: -self.progress * 20, ease: "none" });
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Show infinite scroll indicator
+            const infiniteScroll = document.getElementById('infinite-scroll');
+            if (window.scrollY > window.innerHeight) {
+                infiniteScroll.classList.add('show');
+            } else {
+                infiniteScroll.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to sections
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Infinite scroll click
+        document.getElementById('infinite-scroll').addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        // Cart functionality with localStorage persistence
+        const cartIcon = document.getElementById('cart-icon');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const closeCart = document.getElementById('close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const cartCount = document.querySelector('.cart-count');
+
+        let cart = JSON.parse(localStorage.getItem('beyondCart')) || [];
+        let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        // Toggle cart sidebar
+        cartIcon.addEventListener('click', () => {
+            cartSidebar.classList.add('active');
+            gsap.from(".cart-item", { duration: 0.5, x: 20, opacity: 0, stagger: 0.1 });
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+        });
+
+        // Sample product data (enhanced with more items)
+        const products = [
+            {
+                id: 1,
+                name: "Eternal Kaftan",
+                price: 899.99,
+                image: "Assits/1.jpg",
+                category: "Futuristic",
+                description: "A garment woven from threads of tomorrow"
+            },
+            {
+                id: 2,
+                name: "Quantum Cap",
+                price: 349.99,
+                image: "Assits/2.jpg",
+                category: "Infinite",
+                description: "Headwear that defies gravity and time"
+            },
+            {
+                id: 3,
+                name: "Beyond Bespoke",
+                price: 1299.99,
+                image: "Assits/3.jpg",
+                category: "Eternal",
+                description: "Tailored for souls unbound by eras"
+            },
+            {
+                id: 4,
+                name: "Dimensional Shirt",
+                price: 199.99,
+                image: "Assits/5.jpg",
+                category: "Cosmic",
+                description: "Shirt that shifts with your reality"
+            },
+            {
+                id: 5,
+                name: "Void Overcoat",
+                price: 599.99,
+                image: "Assits/7.jpg",
+                category: "Abyssal",
+                description: "Coat embracing the infinite void"
+            },
+            {
+                id: 6,
+                name: "Stellar Shoes",
+                price: 449.99,
+                image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                category: "Nebula",
+                description: "Footwear stepping through stars"
+            },
+            {
+                id: 7,
+                name: "Nebula Tie",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                category: "Stellar",
+                description: "Tie binding dimensions"
+            },
+            {
+                id: 8,
+                name: "Infinity Belt",
+                price: 179.99,
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                category: "Loop",
+                description: "Belt looping through eternities"
+            }
+        ];
+
+        // Generate collection items
+        const collectionGrid = document.querySelector('.collection-grid');
+        products.slice(0, 4).forEach(product => {
+            const collectionCard = document.createElement('div');
+            collectionCard.className = 'collection-card';
+            collectionCard.innerHTML = `
+                <div class="collection-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="collection-content">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="collection-price">
+                        <span class="price">₦${product.price.toFixed(2)}</span>
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            collectionGrid.appendChild(collectionCard);
+        });
+
+        // Generate product items
+        const productGrid = document.querySelector('.product-grid');
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    <span class="product-badge">${product.category}</span>
+                </div>
+                <div class="product-content">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="product-meta">
+                        <span class="price">$${product.price.toFixed(2)}</span>
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            productGrid.appendChild(productCard);
+        });
+
+        // Add to cart functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-to-cart')) {
+                const productId = parseInt(e.target.getAttribute('data-id'));
+                const product = products.find(p => p.id === productId);
+                
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                cartSidebar.classList.add('active');
+                
+                // Animate cart icon
+                gsap.to(cartIcon, { scale: 1.2, duration: 0.3, yoyo: true, repeat: 1 });
+                
+                // Save to localStorage
+                localStorage.setItem('beyondCart', JSON.stringify(cart));
+            }
+        });
+
+        // Update cart display
+        function updateCart() {
+            cartItems.innerHTML = '';
+            totalPrice = 0;
+            
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+                totalPrice += item.price * item.quantity;
+                
+                // Staggered animation
+                gsap.from(cartItem, { duration: 0.5, x: 20, opacity: 0, delay: index * 0.1 });
+            });
+            
+            cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Dynamic event listeners for controls
+            cartItems.querySelectorAll('.decrease, .increase, .remove-item').forEach(btn => {
+                btn.addEventListener('click', handleCartControl);
+            });
+        }
+
+        function handleCartControl(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const item = cart.find(item => item.id === productId);
+            
+            if (e.target.classList.contains('decrease')) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+            } else if (e.target.classList.contains('increase')) {
+                item.quantity += 1;
+            } else if (e.target.classList.contains('remove-item')) {
+                cart = cart.filter(item => item.id !== productId);
+            }
+            
+            updateCart();
+            localStorage.setItem('beyondCart', JSON.stringify(cart));
+        }
+
+        // Initial cart update
+        updateCart();
+
+        // Video controls
+        const video = document.getElementById('closing-video');
+        const overlay = document.querySelector('.video-overlay');
+        let isPlaying = false;
+
+        function toggleVideo() {
+            if (isPlaying) {
+                video.pause();
+                overlay.style.display = 'flex';
+                isPlaying = false;
+            } else {
+                video.play();
+                overlay.style.display = 'none';
+                isPlaying = true;
+            }
+        }
+
+        video.addEventListener('ended', () => {
+            overlay.style.display = 'flex';
+            isPlaying = false;
+        });
+
+        // Enhanced particles with GSAP
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const colors = ['#E5B80B', '#1a1f36', '#2a2f46', '#ffffff'];
+            
+            for (let i = 0; i < 100; i++) { // More particles for wow factor
+                const particle = document.createElement('div');
+                particle.className = 'floating-element';
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 8 + 3 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                
+                container.appendChild(particle);
+                
+                // GSAP timeline for advanced floating
+                gsap.to(particle, {
+                    y: -20,
+                    rotation: 360,
+                    duration: Math.random() * 10 + 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: Math.random() * 2
+                });
+            }
+        }
+        
+        createParticles();
+
+        // Typewriter effect
+        const typewriterText = "A platform transcending time, where innovation meets immortality in bespoke experiences.";
+        const typewriterElement = document.querySelector('.hero p');
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < typewriterText.length) {
+                typewriterElement.textContent += typewriterText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 30); // Faster for dynamism
+            } else {
+                // Add pulsing effect post-type
+                gsap.to(typewriterElement, { scale: 1.05, duration: 0.5, yoyo: true, repeat: -1, ease: "power2.inOut" });
+            }
+        }
+        
+        setTimeout(() => {
+            typewriterElement.textContent = '';
+            typeWriter();
+        }, 1000);
+
+        // Error handling for images (unbreakable)
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'https://via.placeholder.com/300x250?text=Eternal+Artifact'; // Fallback
+            }
+        }, true);
+
+        // Performance: Lazy load and intersection observer for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.collection-card, .product-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Checkout simulation (non-breaking)
+        document.querySelector('.checkout-btn').addEventListener('click', () => {
+            if (cart.length > 0) {
+                alert(`Transcending to checkout with ${cart.length} eternal items. Total: $${totalPrice.toFixed(2)}`);
+                // In production, integrate with payment gateway
+            } else {
+                alert('Your cart is as empty as the void. Add eternal artifacts first.');
+            }
+        });
+    </script>
+</body>
+</html>
